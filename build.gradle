@@ -1,9 +1,8 @@
 plugins {
-	id 'fabric-loom' version '1.7-SNAPSHOT'
+	id 'fabric-loom' version '1.13-SNAPSHOT'
 }
 
 
-archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
@@ -24,7 +23,9 @@ dependencies {
 	modImplementation(fabricApi.module("fabric-rendering-fluids-v1", project.fabric_version))
 
 	// Sodium
-	modImplementation "maven.modrinth:sodium:${project.sodium_version}"
+	modImplementation ("maven.modrinth:sodium:${project.sodium_version}") {
+        changing = true
+    }
 }
 
 processResources {
@@ -47,6 +48,6 @@ java {
 
 jar {
 	from("LICENSE") {
-		rename { "${it}_${archivesBaseName}"}
+		rename { "${it}_${"benefit"}"}
 	}
 }

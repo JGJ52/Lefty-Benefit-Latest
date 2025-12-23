@@ -13,7 +13,7 @@ public enum LayoutMode implements TranslatableOption {
     BOTTOM_RIGHT(3, "benefit.format.bottomright"),
     NONE(4, "benefit.format.disabled");
 
-    private static final IntFunction<LayoutMode> BY_ID = ValueLists.createIdToValueFunction(LayoutMode::getId, values(), ValueLists.OutOfBoundsHandling.WRAP);
+    private static final IntFunction<LayoutMode> BY_ID = ValueLists.createIndexToValueFunction(LayoutMode::getId, values(), ValueLists.OutOfBoundsHandling.WRAP);
     private final int id;
     private final String translationKey;
 

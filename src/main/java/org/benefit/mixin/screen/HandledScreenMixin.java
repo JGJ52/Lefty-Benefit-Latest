@@ -68,11 +68,11 @@ public abstract class HandledScreenMixin extends Screen {
                 mc.player.sendMessage(Text.of(boldGray + "Successfully sent " + boldGreen + delayedPacketsCount + Formatting.GRAY + " delayed packets."), false);
                 Variables.delayedPackets.clear();
             }
-        }).width(120).position(LayoutPos.xValue(120), LayoutPos.baseY() - 120).build());
+        }).width(120).position(LayoutPos.xValue(120), LayoutPos.baseY() - 150).build());
 
         // Soft Close
         addDrawableChild(ButtonWidget.builder(Text.of("Soft Close"), button -> mc.setScreen(null))
-                .width(80).position(LayoutPos.xValue(80), LayoutPos.baseY() - 150).build());
+                .width(80).position(LayoutPos.xValue(80), LayoutPos.baseY() - 180).build());
 
         // Save UI
         addDrawableChild(ButtonWidget.builder(Text.of("Save UI"), button -> {
@@ -80,7 +80,7 @@ public abstract class HandledScreenMixin extends Screen {
             Variables.storedScreenHandler = mc.player.currentScreenHandler;
             mc.setScreen(null);
             mc.player.sendMessage(Text.literal("Screen §asuccessfully §rsaved! Press §a" + restoreScreenBind.getString() + " §rto restore it!"), false);
-        }).width(80).position(LayoutPos.xValue(80), LayoutPos.baseY() - 90).build());
+        }).width(80).position(LayoutPos.xValue(80), LayoutPos.baseY() - 120).build());
 
         // Leave & send packets
         addDrawableChild(ButtonWidget.builder(Text.of("Leave & send packets"), button -> {
@@ -97,7 +97,7 @@ public abstract class HandledScreenMixin extends Screen {
                         Text.of(boldGray + "Disconnected, " + boldGreen + delayedPacketsAmount + boldGray + " packets successfully sent."));
                 Variables.delayedPackets.clear();
             }
-        }).width(140).position(LayoutPos.xValue(140), LayoutPos.baseY() - 60).build());
+        }).width(140).position(LayoutPos.xValue(140), LayoutPos.baseY() - 90).build());
 
         // Get Name
         if(inContainer()) addDrawableChild(ButtonWidget.builder(Text.of("Get Name"), button -> {
@@ -112,13 +112,14 @@ public abstract class HandledScreenMixin extends Screen {
         }).dimensions(LayoutPos.xValue(80), LayoutPos.getNameYPos(), 80, 20).build());
 
         // Paper Dupe (1.20.6 - 1.21.1)
+        /*
         addDrawableChild(ButtonWidget.builder(Text.of("Paper Dupe"), button -> {
             if(!(mc.player.getInventory().getMainHandStack().getItem()  == Items.WRITABLE_BOOK)) {
                 mc.player.sendMessage(Text.of("Please hold a writable book!"), false);
                 return;
             }
             for(int i = 9; i < 44; i++) {
-                if(36 + mc.player.getInventory().selectedSlot == i) continue;
+                if(36 + mc.player.getInventory().getSelectedSlot() == i) continue;
                 mc.player.networkHandler.sendPacket(new ClickSlotC2SPacket(
                         mc.player.currentScreenHandler.syncId,
                         mc.player.currentScreenHandler.getRevision(),
@@ -130,10 +131,10 @@ public abstract class HandledScreenMixin extends Screen {
                 ));
             }
             mc.player.networkHandler.sendPacket(new BookUpdateC2SPacket(
-                    mc.player.getInventory().selectedSlot, List.of("discord.gg/lefty"), Optional.of("Lefty Dupes On Fucking TOP discord.gg/lefty"
+                    mc.player.getInventory().getSelectedSlot(), List.of("discord.gg/lefty"), Optional.of("Lefty Dupes On Fucking TOP discord.gg/lefty"
             )));
         }).dimensions(LayoutPos.xValue(80), LayoutPos.baseY() - 30, 80, 20).build());
-
+*/
         // Create input text box
         textBox = new TextFieldWidget(mc.textRenderer, LayoutPos.xValue(100), LayoutPos.sendChatYPos(), 100, 20, Text.of("Send Chat"));
         textBox.setText(Variables.lastCommand);
